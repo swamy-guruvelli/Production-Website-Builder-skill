@@ -1,0 +1,12 @@
+# Local backups are not part of the distributable project.
+retired-skill-backups/
+
+# Operating-system and editor files.
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Python cache.
+__pycache__/
+*.py[cod]

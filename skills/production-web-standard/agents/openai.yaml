@@ -1,0 +1,4 @@
+interface:
+  display_name: "Production Web Standard"
+  short_description: "Production definition of done and skill routing for web work"
+  default_prompt: "Use $production-web-standard to build or modify this web project to a complete, production-ready standard and select only the relevant specialist skills."
