@@ -22,6 +22,7 @@ Preferred capability routing when available:
 
 - Frontend implementation: `frontend-ui-engineering` (the installed equivalent of `frontend-app-builder`).
 - Visual direction: `frontend-design` only when creating or materially reshaping the visual design; the product brief and existing design system remain authoritative.
+- Marketing, brand, and interface copy: use `frontend-design` for visual/content direction when available, while keeping product UI wording functional, specific, and user-facing. Never expose prompts, agent reasoning, implementation notes, or unsupported claims in the interface.
 - React performance and patterns: `vercel-react-best-practices` or the strongest installed equivalent.
 - Next.js conventions: use the project's version-matched bundled Next.js docs and generated repository agent rules when available, plus the React skill; use a dedicated Next.js skill only when a current maintained one is installed.
 - Other frameworks: the strongest matching installed framework skill; never apply React conventions to a different framework.
@@ -42,6 +43,8 @@ This skill owns the Definition of Done, completion criteria, proportionality, an
 - Testing skills own runtime inspection, interaction checks, responsive checks, and fix/retest loops.
 - Backend, data, and deployment skills own their technology-specific conventions.
 
+The production requirements reference owns content quality, feedback patterns, error disclosure, privacy/compliance boundaries, resilience, and project decision records.
+
 Do not copy volatile framework documentation into this skill and do not create micro-skills for buttons, footers, mobile menus, loading indicators, form errors, or individual viewports.
 
 ## Build to the Definition of Done
@@ -57,7 +60,13 @@ Key invariants:
 - Public sites include appropriate shell, metadata, SEO fundamentals, and error/not-found handling; private tools do not receive pointless SEO machinery.
 - Accessibility, security, and performance are implementation concerns, not cosmetic final passes.
 - Do not ship lorem ipsum, fake links, dead controls, dummy forms, empty routes, unimplemented primary actions, or TODO placeholders unless explicitly requested.
+- Do not ship fabricated testimonials, customer logos, statistics, certifications, reviews, awards, guarantees, availability, or other trust claims. Omit unsupported claims or mark supplied placeholders clearly.
+- Do not expose stack traces, raw exception messages, SQL, filesystem paths, tokens, secrets, framework internals, or sensitive request data in production user interfaces. Give users a safe next step and a reference ID when support needs to investigate; keep diagnostics in protected server-side logs or an authorized admin surface.
+- Use inline, banner, dialog, and toast feedback proportionally. Do not use a disappearing toast as the only way to communicate a critical, persistent, or actionable error.
+- Keep consent, privacy, legal, and compliance behavior proportional to the product and jurisdiction. Do not invent legal text or claim formal compliance without the required review.
 - Reuse the existing design system and architecture. Introduce the minimum necessary abstraction and eliminate only obvious harmful duplication.
+
+When a project makes a meaningful architectural or operational choice, inspect any existing `DECISIONS.md`, `ARCHITECTURE.md`, or ADR system and update it. If no decision record exists, create a root-level `DECISIONS.md` for choices that affect architecture, cost, security, data, maintenance, or user-visible behavior. Mark whether each decision was user-directed, constrained by the existing project, or recommended by the agent. Do not turn the file into a dependency inventory, changelog, or place for secrets.
 
 ## Verify Before Completion
 

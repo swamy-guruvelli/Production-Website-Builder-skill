@@ -23,6 +23,25 @@ When a runnable application and browser tooling are available:
 
 Do not mutate real production data merely to test. Use local, disposable, seeded, or clearly authorized test data.
 
+## Content, feedback, and disclosure checks
+
+- Read every visible string, including headings, taglines, buttons, labels, helper text, empty states, errors, toasts, captions, metadata, and footer content.
+- Remove prompt language, agent reasoning, implementation terminology, generic filler, unsupported claims, fabricated trust content, and inconsistent action names.
+- Read the page using only its headings and confirm that the information structure still makes sense. Check that visual heading styling does not replace semantic heading markup.
+- Test long headings, long labels, 200% text scaling, mobile wrapping, and relevant translated or right-to-left content.
+- Trigger validation, network, server, permission, not-found, timeout, and retry states that are relevant to the product.
+- Confirm that inline errors are connected to their controls, multi-error forms provide a linked summary, and safe messages give the user a useful next step.
+- Confirm that non-critical status messages are announced without stealing focus, actionable or critical messages remain available, and toasts do not obscure the next required control.
+- Deliberately inspect production-like failure responses for stack traces, SQL, filesystem paths, framework details, tokens, secrets, request bodies, and unnecessary personal data. Confirm that full diagnostics are available only to authorized administrators or support tooling.
+- Check the project root for an existing decision record and update or create `DECISIONS.md` for meaningful technical choices. Mark user-directed decisions clearly.
+
+## Privacy and trust checks
+
+- Confirm that consent and tracking behavior matches the relevant jurisdiction and that non-essential tracking does not run before consent where required.
+- Check that privacy, terms, cookie, accessibility, refund, or other legal links exist when relevant and do not contain invented claims or placeholder text.
+- Confirm that testimonials, logos, ratings, statistics, certifications, prices, availability, and performance claims are supplied and supportable.
+- Check that analytics, logs, error trackers, URLs, and third-party embeds do not receive unnecessary personal or sensitive data.
+
 ## Completion gate
 
 Before reporting completion, confirm:
