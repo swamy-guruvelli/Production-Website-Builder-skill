@@ -55,6 +55,8 @@ Apply these requirements according to the product and affected surface. They def
 - Keep repeated actions consistent across navigation, hero sections, forms, dialogs, and completion messages. A control and its result should use the same user vocabulary.
 - Do not fabricate testimonials, customer logos, statistics, certifications, awards, guarantees, reviews, pricing, availability, or performance claims. Omit unsupported content or identify supplied placeholders clearly.
 - Use a deliberate type scale, readable content width, responsive wrapping, and sufficient contrast. Do not force line breaks or visual treatments that fail on mobile, at increased text sizes, or with longer translated content.
+- Do not make a split section header the default. A heading and supporting copy may share a row only when both have adequate readable measure and a real compositional purpose; otherwise, stack them in one focused column.
+- Give the primary page or section heading enough width to express the message naturally. Do not squeeze it into a narrow half-column merely to create symmetry, and do not force a two-line headline when the content and layout do not call for it.
 - Preserve an existing brand voice and information architecture during a redesign unless the request explicitly includes a content or brand rewrite.
 
 ## Architecture and design system
@@ -62,6 +64,7 @@ Apply these requirements according to the product and affected surface. They def
 - Reuse existing buttons, inputs, cards, modals, containers, navigation, tables, badges, loading/error/empty states, pagination, and search patterns.
 - Keep components composable with clear responsibilities. Avoid both obvious repetition and speculative abstraction.
 - Reuse or derive consistent tokens for typography, spacing, color, surfaces, borders, radii, shadows, widths, breakpoints, motion, icons, and z-index.
+- Use the project’s spacing tokens or scale for padding, margins, and gaps. Prefer parent-level layout spacing and `gap` over scattered child margins; avoid arbitrary one-off values, negative-spacing hacks, and spacing that only works at one viewport.
 - Preserve existing project structure, libraries, routes, analytics hooks, and working behavior unless the requested change requires otherwise.
 
 ## Error disclosure and diagnostics

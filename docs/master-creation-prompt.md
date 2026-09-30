@@ -205,6 +205,28 @@ Do not require me to specify these individually.
 
 ---
 
+# Feedback, notifications, and error disclosure
+
+Choose the feedback surface based on the severity of the problem, whether it persists, and whether the user must act.
+
+- Show field validation beside the affected field.
+- For multiple form errors, show a linked error summary as well as the individual field messages.
+- Use short, non-blocking toasts or polite status messages for ordinary success and status updates.
+- Keep persistent or actionable errors visible in the relevant page or section.
+- Use a banner, dialog, or full-page state for critical or blocking situations.
+- Do not use a disappearing toast as the only way to communicate a critical or actionable error.
+- Keep dynamic messages keyboard accessible, screen-reader discoverable, dismissible where appropriate, usable on small screens, and respectful of reduced motion.
+
+Separate user-facing messages from internal diagnostics:
+
+- Give users a short, contextual explanation, a useful next step, and a safe reference ID when support may need to investigate.
+- Never expose stack traces, raw exception messages, SQL, filesystem paths, tokens, secrets, framework internals, request headers, or sensitive request data in production interfaces.
+- Record full diagnostics in protected server-side logs or an authorized admin/support surface.
+- Enforce access to diagnostic details server-side and use least-privilege roles.
+- Redact passwords, session identifiers, access tokens, payment data, and unnecessary personal information from logs.
+
+---
+
 # Site completeness
 
 Automatically add reasonable surrounding website requirements where appropriate.
@@ -253,6 +275,21 @@ Do not leave:
 - Fake pagination
 
 unless I explicitly request placeholders.
+
+---
+
+# Content, visual, and trust quality
+
+Treat copy and layout as part of product quality, not decoration.
+
+- Taglines are optional. Use one only when it communicates a useful product or brand idea.
+- Never expose prompts, agent reasoning, design-process notes, component structure, or implementation terminology in user-facing copy.
+- Make headings specific, useful when scanned alone, and semantically structured.
+- Do not make a split section header the default. Use a two-column header only when both columns contain meaningful content and have adequate readable measure.
+- Give the primary heading enough width to express itself naturally. Do not squeeze it into a narrow half-column merely to create symmetry or force a two-line treatment.
+- Use a deliberate type scale, readable content width, responsive wrapping, and sufficient contrast.
+- Use real, supportable content. Do not fabricate testimonials, logos, statistics, certifications, awards, reviews, guarantees, pricing, availability, or performance claims.
+- Preserve an existing brand voice and information architecture during redesign unless a content or brand rewrite is requested.
 
 ---
 
@@ -320,11 +357,13 @@ Maintain visual consistency across the entire application.
 
 Do not create subtly different versions of the same component without reason.
 
+Use the project’s spacing tokens or scale for padding, margins, and gaps. Prefer parent-level layout spacing and `gap` over scattered child margins. Avoid arbitrary one-off values, negative-spacing hacks, and spacing that only works at one viewport.
+
 ---
 
 # Accessibility
 
-Target practical WCAG accessibility standards.
+Target current WCAG accessibility guidance, using WCAG 2.2 AA as a practical target where applicable.
 
 Automatically include appropriate:
 
@@ -347,6 +386,10 @@ Automatically include appropriate:
 - Logical tab order
 - Accessible form validation
 - Meaningful link text
+- Focus not being obscured by sticky or fixed content
+- Usable behavior at increased text sizes and zoom
+- Adequate pointer target size
+- Accessible authentication where authentication exists
 
 Do not use clickable `<div>` or `<span>` elements when semantic controls are appropriate.
 
@@ -402,6 +445,22 @@ For public-facing websites automatically implement reasonable SEO fundamentals:
 - Appropriate index/noindex behavior
 
 Do not add SEO machinery to private dashboards where it provides no value.
+
+---
+
+# Privacy, compliance, resilience, and localization
+
+Apply these requirements proportionally and according to the project’s jurisdiction, audience, and industry.
+
+- Do not invent legal notices, consent language, terms, accessibility claims, or regulatory guarantees.
+- Where applicable, explain what personal data is collected, why it is used, how long it is retained, and who receives it.
+- Where applicable, do not set non-essential cookies or tracking before valid consent. Make consent understandable, freely given, reversible, and no harder to reject than to accept.
+- Do not use dark patterns for consent, subscriptions, payment, data collection, or destructive confirmation.
+- Handle timeouts, cancellation, offline conditions, failed dependencies, expired sessions, partial responses, and server failures where they can occur.
+- Preserve useful user-entered data after recoverable errors and prevent duplicate submissions.
+- Provide retry, undo, recovery, or a clear alternative path where appropriate. Do not blindly retry destructive or non-idempotent operations.
+- Test long headings, labels, names, dates, currencies, time zones, translated content, and right-to-left layout when relevant.
+- Keep important text out of images and avoid layouts that depend on one exact string length.
 
 ---
 
@@ -554,6 +613,10 @@ Check for:
 - Invisible content
 - Overlapping controls
 - Broken mobile navigation
+- Unjustified split headers or headings squeezed into narrow columns
+- Padding, margins, or gaps that break the intended spacing rhythm at other widths
+- User-facing stack traces, raw exception details, secrets, or unnecessary personal data in failure responses
+- Notifications that disappear before they can be read or obscure the next required control
 
 Fix discovered problems before declaring the task complete whenever tooling allows it.
 
@@ -582,6 +645,12 @@ Before reporting completion, internally check:
 - Are destructive actions handled responsibly?
 - Are API failures handled?
 - Are protected actions actually protected?
+- Are user-facing errors safe, actionable, and linked to protected diagnostics?
+- Are notifications using the right surface and accessible status semantics?
+- Are headings and copy specific, natural, and free from prompt or implementation language?
+- Are trust claims, reviews, logos, and statistics supplied and supportable?
+- Is consent and tracking behavior appropriate for the relevant jurisdiction?
+- Is a root-level `DECISIONS.md` or existing ADR record updated for meaningful technical choices?
 - Does the implementation follow the existing architecture?
 
 Do not make me explicitly request these checks.
@@ -1041,6 +1110,8 @@ When working in an existing repository:
 
 Do not rebuild an existing application from scratch merely because another architecture would also work.
 
+Before making a meaningful architectural or operational choice, inspect for `DECISIONS.md`, `ARCHITECTURE.md`, or an existing ADR convention. Create or update a root-level `DECISIONS.md` when a choice affects architecture, cost, security, data, maintenance, deployment, or user-visible behavior, or when the user explicitly requests a decision record. Mark each entry as `User-directed`, `Existing-project constraint`, or `Agent recommendation`, and record the context, alternatives, rationale, consequences, and revisit condition. Do not store secrets, stack traces, or private data in the decision record.
+
 ---
 
 # Autonomous completion principle
@@ -1159,6 +1230,9 @@ should implicitly mean:
 - test desktop/tablet/mobile
 - fix obvious errors
 - remove unfinished placeholders
+- remove fabricated trust content and prompt-style copy
+- keep stack traces and internal diagnostics out of production user interfaces
+- preserve a decision record for meaningful technical choices
 - verify the application
 - report what was completed
 

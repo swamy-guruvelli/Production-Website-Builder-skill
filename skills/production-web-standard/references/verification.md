@@ -28,6 +28,8 @@ Do not mutate real production data merely to test. Use local, disposable, seeded
 - Read every visible string, including headings, taglines, buttons, labels, helper text, empty states, errors, toasts, captions, metadata, and footer content.
 - Remove prompt language, agent reasoning, implementation terminology, generic filler, unsupported claims, fabricated trust content, and inconsistent action names.
 - Read the page using only its headings and confirm that the information structure still makes sense. Check that visual heading styling does not replace semantic heading markup.
+- Inspect section headers for an unjustified 50/50 split. Confirm that primary headings have enough readable width, wrap naturally, and are not narrowed merely to make room for filler copy.
+- Check padding, margins, and gaps against the project’s spacing scale. Look for arbitrary values, negative-spacing hacks, inconsistent section rhythm, and spacing that breaks at representative widths.
 - Test long headings, long labels, 200% text scaling, mobile wrapping, and relevant translated or right-to-left content.
 - Trigger validation, network, server, permission, not-found, timeout, and retry states that are relevant to the product.
 - Confirm that inline errors are connected to their controls, multi-error forms provide a linked summary, and safe messages give the user a useful next step.
